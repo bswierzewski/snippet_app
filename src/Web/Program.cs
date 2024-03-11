@@ -9,7 +9,14 @@ builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebServices(builder.Configuration);
 
-builder.Services.AddCors();
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+        builder.SetIsOriginAllowed(_ => true)
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials());
+});
 
 var app = builder.Build();
 
@@ -24,12 +31,7 @@ if (app.Environment.IsDevelopment())
     await app.SeedDatabaseAsync();
 }
 
-
-app.UseCors(opt => opt
-    .AllowAnyHeader()
-    .AllowAnyMethod()
-    .AllowCredentials()
-    .WithOrigins(builder.Configuration["AllowedOrigin"]));
+app.UseCors();
 
 app.UseAuthorization();
 
