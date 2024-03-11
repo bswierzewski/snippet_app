@@ -19,9 +19,9 @@
 		<ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
 	</ItemGroup>
 
-	<Target Name="OpenAPI" AfterTargets="Build" Condition="$(Configuration)=='Debug'">
-		<Exec Command="swagger tofile --output ../../openapi/snippetApi.yaml --yaml $(OutputPath)$(AssemblyName).dll v1" WorkingDirectory="$(ProjectDir)" />
-		<Exec Command="npx openapi-typescript *.yaml -o ../client/src/clients" WorkingDirectory="$(ProjectDir)\..\..\openapi" />
-	</Target>
+	
+	<!-- <Target Name="OpenAPI" AfterTargets="Build" Condition="$(Configuration)=='Debug'">
+		<Exec Command="swagger tofile **output ../../openapi/snippetApi.yaml **yaml $(OutputPath)$(AssemblyName).dll v1" WorkingDirectory="$(ProjectDir)" />
+	</Target> -->
 
 </Project>

@@ -25,5 +25,5 @@ jobs:
         with:
           context: .
           file: src/Web/Dockerfile
-          tags: wordbyte/snippet_api:latest
+          tags: ninjabytetech/snippet_api:latest
           push: true
