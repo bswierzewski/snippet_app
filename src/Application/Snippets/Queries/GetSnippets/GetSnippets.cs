@@ -35,9 +35,8 @@ namespace Application.Snippets.Queries.GetSnippets
                 .Where(snippet => snippet.CreatedBy == _user.Id);
 
             if (!string.IsNullOrWhiteSpace(request.SearchTerm))
-                query = query.Where(snippet =>
-                    EF.Functions.Like(snippet.Title, $"%{request.SearchTerm}%")
-                    || snippet.Tags.Any(tag => EF.Functions.Like(tag.Name, $"%{request.SearchTerm}%")));
+                query = query.Where(snippet => snippet.Title.ToLower().Contains(request.SearchTerm.ToLower())
+                    || snippet.Tags.Any(tag => tag.Name.ToLower().Contains(request.SearchTerm.ToLower())));
 
             if (request.Tags.Length != 0)
                 query = query.Where(snippet => snippet.Tags.Any(tag => request.Tags.Contains(tag.Name)));
