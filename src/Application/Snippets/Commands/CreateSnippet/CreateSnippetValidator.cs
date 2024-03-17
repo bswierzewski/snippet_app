@@ -2,9 +2,9 @@
 
 namespace Application.Snippets.Commands.CreateTodoItem;
 
-public class UpdateSnippetValidator : AbstractValidator<CreateSnippetCommand>
+public class CreateSnippetValidator : AbstractValidator<CreateSnippetCommand>
 {
-    public UpdateSnippetValidator()
+    public CreateSnippetValidator()
     {
         RuleFor(v => v.Title)
             .NotEmpty();
