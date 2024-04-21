@@ -27,7 +27,7 @@ public class Snippets : EndpointGroupBase
     }
 
     public async Task<SnippetDto> GetSnippet(ISender sender, int id)
-    { 
+    {
         return await sender.Send(new GetSnippetQuery(id));
     }
 
@@ -40,7 +40,7 @@ public class Snippets : EndpointGroupBase
     {
         if (id != command.Id) return Results.BadRequest();
         await sender.Send(command);
-        return Results.NoContent();        
+        return Results.NoContent();
     }
 
     public async Task<IResult> DeleteSnippet(ISender sender, int id)

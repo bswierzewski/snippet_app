@@ -13,6 +13,7 @@ public class SnippetDto
     public string Docs { get; init; }
     public bool IsPinned { get; init; }
     public string[] Tags { get; set; }
+    public string[] ImageUrls { get; set; }
 
     private class Mapping : Profile
     {

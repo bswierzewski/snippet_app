@@ -1,7 +1,6 @@
 ﻿using Application.Common.Interfaces;
 using AutoMapper;
 using Domain.Entities;
-using System.ComponentModel.DataAnnotations;
 
 namespace Application.Snippets.Commands.UpdateSnippet;
 
@@ -14,6 +13,7 @@ public record UpdateSnippetCommand : IRequest<int>
     public string Code { get; init; }
     public string Docs { get; init; }
     public string[] Tags { get; init; } = [];
+    public string[] ImageUrls { get; init; } = [];
 }
 
 public class UpdateSnippetCommandHandler : IRequestHandler<UpdateSnippetCommand, int>

@@ -13,6 +13,7 @@ public record CreateSnippetCommand() : IRequest<int>
     public string Code { get; init; }
     public string Docs { get; init; }
     public string[] Tags { get; init; } = [];
+    public string[] ImageUrls { get; init; } = [];
 }
 
 public class CreateSnippetCommandHandler : IRequestHandler<CreateSnippetCommand, int>

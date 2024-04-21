@@ -9,6 +9,7 @@ public class Snippet : BaseAuditableEntity
     public string Language { get; set; }
     public string Code { get; set; }
     public string Docs { get; set; }
+    public string[] ImageUrls { get; set; }
 
     private bool _isPinned;
     public bool IsPinned

@@ -15,7 +15,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Applicat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{35CA40B0-2C62-4177-B573-A8688DFDA9C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Tests", "tests\Application.Tests\Application.Tests.csproj", "{98811038-F7C9-47D6-88B8-5B10F83DAAF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Tests", "tests\Application.Tests\Application.Tests.csproj", "{98811038-F7C9-47D6-88B8-5B10F83DAAF6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5FA94A37-4D4A-462F-86F9-AE1F1CA40DF4}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\mtparts\mtparts_app\README.MD = ..\..\mtparts\mtparts_app\README.MD
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
