@@ -20,7 +20,7 @@ namespace Infrastructure.Services
             Cloudinary.Api.Secure = true;
         }
 
-        public Uri UploadImage(string name, Stream stream)
+        public Uri ImageUpload(string name, Stream stream)
         {
             var uploadParams = new ImageUploadParams()
             {

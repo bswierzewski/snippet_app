@@ -2,6 +2,6 @@
 {
     public interface IImageService
     {
-        Uri UploadImage(string name, Stream stream);
+        Uri ImageUpload(string name, Stream stream);
     }
 }
