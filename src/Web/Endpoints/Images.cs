@@ -14,11 +14,11 @@ namespace Web.Endpoints
                 .MapPost(UploadImage);
         }
 
-        public async Task<List<string>> UploadImage(ISender sender, IFormFileCollection files)
+        public async Task<string> UploadImage(ISender sender, IFormFile file)
         {
             return await sender.Send(new ImageUploadCommand()
             {
-                Files = files
+                File = file
             });
         }
     }

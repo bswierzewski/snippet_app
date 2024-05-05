@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Http;
 
 namespace Application.Images.Commands.ImageUpload;
 
-public record ImageUploadCommand() : IRequest<List<string>>
+public record ImageUploadCommand() : IRequest<string>
 {
-    public IFormFileCollection Files { get; init; }
+    public IFormFile File { get; init; }
 }
 
-public class ImageUploadCommandHandler : IRequestHandler<ImageUploadCommand, List<string>>
+public class ImageUploadCommandHandler : IRequestHandler<ImageUploadCommand, string>
 {
     private readonly IImageService _imageService;
 
@@ -17,17 +17,10 @@ public class ImageUploadCommandHandler : IRequestHandler<ImageUploadCommand, Lis
         _imageService = imageService;
     }
 
-    public async Task<List<string>> Handle(ImageUploadCommand request, CancellationToken cancellationToken)
+    public async Task<string> Handle(ImageUploadCommand request, CancellationToken cancellationToken)
     {
-        var urls = new List<string>();
+        var url = _imageService.ImageUpload(request.File.FileName, request.File.OpenReadStream());
 
-        foreach (var file in request.Files)
-        {
-            var url = _imageService.ImageUpload(file.FileName, file.OpenReadStream());
-
-            urls.Add(url.AbsoluteUri);
-        }
-       
-        return urls;
+        return url.AbsoluteUri;
     }
 }

@@ -22,6 +22,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\mtparts\mtparts_app\README.MD = ..\..\mtparts\mtparts_app\README.MD
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{BD3CA01E-3095-4580-94A1-3F83C2FFA3AD}"
+	ProjectSection(SolutionItems) = preProject
+		docs\snippet.yaml = docs\snippet.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -4,7 +4,7 @@ public class ImageUploadValidator : AbstractValidator<ImageUploadCommand>
 {
     public ImageUploadValidator()
     {
-        RuleFor(v => v.Files)
+        RuleFor(v => v.File)
             .NotEmpty();
     }
 }
