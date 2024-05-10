@@ -1,5 +1,6 @@
 ﻿using Application.Images.Commands.ImageUpload;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Web.Infrastructure;
 
 namespace Web.Endpoints
@@ -14,12 +15,9 @@ namespace Web.Endpoints
                 .MapPost(UploadImage);
         }
 
-        public async Task<string> UploadImage(ISender sender, IFormFile file)
+        public async Task<string> UploadImage(ISender sender, [FromForm] ImageUploadCommand command)
         {
-            return await sender.Send(new ImageUploadCommand()
-            {
-                File = file
-            });
+            return await sender.Send(command);
         }
     }
 }
