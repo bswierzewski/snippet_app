@@ -3,7 +3,6 @@ using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Web.Infrastructure;
 using Web.Services;
 
@@ -22,12 +21,18 @@ public static class DependencyInjection
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
+                options.Authority = configuration["Auth0:Authority"]; // Adres URL Auth0
+                options.Audience = configuration["Auth0:Audience"]; // Audience zdefiniowane w Auth0
+
+                // Konfiguracja weryfikacji tokenu
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidIssuer = configuration["Auth0:Issuer"],
-                    ValidAudiences = new[] { configuration["Auth0:Audience"] },
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Auth0:Key"])),
-                    LifetimeValidator = LifetimeValidator
+                    ValidateIssuer = true, // Weryfikuj wystawcê tokenu
+                    ValidateAudience = true, // Weryfikuj odbiorcê tokenu
+                    ValidateLifetime = true, // SprawdŸ, czy token nie wygas³
+                    ValidateIssuerSigningKey = true, // Weryfikuj podpis tokenu
+                    ValidIssuer = configuration["Auth0:Authority"], // Wystawca tokenu
+                    ValidAudience = configuration["Auth0:Audience"], // Odbiorca tokenu
                 };
             });
         services.AddAuthorization();
@@ -43,14 +48,5 @@ public static class DependencyInjection
         services.AddScoped<IUser, CurrentUser>();
 
         return services;
-    }
-
-    private static bool LifetimeValidator(DateTime? notBefore, DateTime? expires, SecurityToken token, TokenValidationParameters @params)
-    {
-        if (expires != null)
-        {
-            return expires > DateTime.UtcNow;
-        }
-        return false;
     }
 }
